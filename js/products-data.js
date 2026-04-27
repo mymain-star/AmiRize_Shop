@@ -226,7 +226,7 @@ export const productsData = {
       image: "img/box1.jpg",
       description: "Новогодний набор: свеча, мягкая игрушка, украшения, открытка",
       category: "boxes",
-      link: "boxes/BX01.html"
+      link: "BOXES/BX01.html"
     },
     {
       id: 202,
@@ -236,7 +236,7 @@ export const productsData = {
       image: "img/box2.jpg",
       description: "Нежный набор с изысканным шаколадом",
       category: "boxes",
-      link: "boxes/BX02.html"
+      link: "BOXES/BX02.html"
     },
     {
       id: 203,
@@ -246,7 +246,7 @@ export const productsData = {
       image: "img/box3.png",
       description: "Окрыляющий бокс с вашими любимыми сладостями",
       category: "boxes",
-      link: "boxes/BX03.html"
+      link: "BOXES/BX03.html"
     }
 
   ],
