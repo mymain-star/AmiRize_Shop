@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMIRIZE - Карточка товара</title>
+    <link rel="stylesheet" href="../picturies.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ОСНОВНЫЕ СТИЛИ СТРАНИЦЫ ТОВАРА */
+        .product-page {
+            min-height: 100vh;
+            background-color: #181818;
+            color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* КНОПКА НАЗАД */
+        .back-btn {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            z-index: 1000;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            text-decoration: none;
+        }
+
+        .back-btn:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateX(-5px);
+        }
+
+        .back-btn i {
+            font-size: 1.5rem;
+            color: #fff;
+        }
+
+        /* ШАПКА ТОВАРА */
+        .product-header {
+            text-align: center;
+            padding: 30px 20px 20px;
+            margin-bottom: 40px;
+            border-bottom: 1px solid #333;
+        }
+
+        .product-logo {
+            font-family: 'Bruno Ace', sans-serif;
+            font-size: 32px;
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        /* ОСНОВНОЙ КОНТЕНТ */
+        .product-main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        /* КОНТЕЙНЕР ДВУХ БЛОКОВ */
+        .product-container {
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+        }
+
+        /* ЛЕВЫЙ БЛОК - КАРТИНКА */
+        .product-image-container {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .product-image {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            background-color: #fff;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .product-image:hover img {
+            transform: scale(1.02);
+        }
+
+        /* ПРАВЫЙ БЛОК - ИНФОРМАЦИЯ */
+        .product-info {
+            flex: 1;
+            padding: 10px 0;
+        }
+
+        /* СТРОКА С НАЗВАНИЕМ И АРТИКУЛОМ */
+        .product-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .product-title {
+            font-size: 36px;
+            font-weight: 500;
+            color: #fff;
+            line-height: 1.2;
+            margin: 0;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        /* КНОПКА АРТИКУЛА */
+        .product-id-btn {
+            font-size: 14px;
+            color: #777;
+            padding: 8px 14px;
+            background-color: rgba(255, 255, 255, 0.07);
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit;
+            outline: none;
+            user-select: none;
+        }
+
+        .product-id-btn:hover {
+            background-color: rgba(255, 255, 255, 0.12);
+            color: #aaa;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-id-btn:active {
+            background-color: rgba(255, 255, 255, 0.15);
+            transform: translateY(0);
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-id-btn strong {
+            font-weight: 600;
+            color: #aaa;
+        }
+
+        .product-id-btn i {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        /* АНИМАЦИЯ КОПИРОВАНИЯ */
+        .product-id-btn.copied {
+            background-color: rgba(108, 219, 112, 0.576);
+            border-color: rgba(140, 226, 143, 0.809);
+            color: #ffffff;
+        }
+
+        .product-id-btn.copied i {
+            color: #797979;
+        }
+
+        .product-id-btn.copied:hover {
+            background-color: rgba(76, 175, 80, 0.2);
+        }
+
+        /* ЦЕНА */
+        .product-price {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        /* ОПИСАНИЕ */
+        .product-description {
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 35px;
+            color: #ccc;
+        }
+
+        /* ХАРАКТЕРИСТИКИ */
+        .product-specs {
+            margin-bottom: 40px;
+        }
+
+        .specs-title {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            color: #fff;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #333;
+        }
+
+        .specs-list {
+            list-style: none;
+        }
+
+        .specs-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #333;
+            color: #aaa;
+        }
+
+        .specs-list li:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            font-weight: 500;
+            color: #fff;
+        }
+
+        /* ВРЕМЯ ВЫПОЛНЕНИЯ */
+        .production-time {
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid #fff;
+        }
+
+        .time-title {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .time-value {
+            font-size: 16px;
+            color: #aaa;
+        }
+
+        /* НЕЗАМЕТНЫЙ АРТИКУЛ ВНИЗУ */
+        .product-id-bottom {
+            font-size: 14px;
+            color: #666;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        /* АДАПТИВНОСТЬ */
+        @media (max-width: 1200px) {
+            .product-container {
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .product-container {
+                flex-direction: column;
+                gap: 30px;
+            }
+            
+            .product-image-container {
+                max-width: 100%;
+            }
+            
+            .product-title {
+                font-size: 32px;
+            }
+            
+            .product-price {
+                font-size: 36px;
+            }
+            
+            .product-description {
+                font-size: 17px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .back-btn {
+                top: 20px;
+                left: 20px;
+                width: 40px;
+                height: 40px;
+            }
+            
+            .back-btn i {
+                font-size: 1.3rem;
+            }
+            
+            .product-header {
+                padding: 50px 15px 20px;
+                margin-bottom: 30px;
+            }
+            
+            .product-logo {
+                font-size: 28px;
+            }
+            
+            .product-main {
+                padding: 0 15px 40px;
+            }
+            
+            .product-title-row {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            
+            .product-id-title {
+                align-self: flex-start;
+            }
+            
+            .product-title {
+                font-size: 28px;
+                min-width: auto;
+            }
+            
+            .product-price {
+                font-size: 32px;
+                margin-bottom: 25px;
+            }
+            
+            .product-description {
+                font-size: 16px;
+                margin-bottom: 30px;
+            }
+            
+            .specs-title {
+                font-size: 18px;
+            }
+            
+            .specs-list li {
+                padding: 10px 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .product-header {
+                padding: 45px 10px 15px;
+            }
+            
+            .product-logo {
+                font-size: 26px;
+            }
+            
+            .product-main {
+                padding: 0 10px 30px;
+            }
+            
+            .product-container {
+                gap: 25px;
+            }
+            
+            .product-title {
+                font-size: 26px;
+            }
+            
+            .product-price {
+                font-size: 30px;
+            }
+            
+            .product-description {
+                font-size: 15px;
+                line-height: 1.6;
+            }
+            
+            .specs-list li {
+                flex-direction: column;
+                gap: 5px;
+                padding: 8px 0;
+            }
+            
+            .production-time {
+                padding: 15px;
+            }
+            
+            .time-title {
+                font-size: 16px;
+            }
+            
+            .time-value {
+                font-size: 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .back-btn {
+                top: 15px;
+                left: 15px;
+                width: 36px;
+                height: 36px;
+            }
+            
+            .product-logo {
+                font-size: 24px;
+            }
+            
+            .product-title {
+                font-size: 24px;
+            }
+            
+            .product-price {
+                font-size: 28px;
+            }
+            
+            .product-description {
+                font-size: 14px;
+            }
+            
+            .specs-title {
+                font-size: 17px;
+            }
+            
+            .product-id-title {
+                font-size: 13px;
+                padding: 5px 10px;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .product-title {
+                font-size: 22px;
+            }
+            
+            .product-price {
+                font-size: 26px;
+            }
+            
+            .product-logo {
+                font-size: 22px;
+            }
+            
+            .product-id-title {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body class="product-page">
+    <!-- КНОПКА НАЗАД -->
+    <a href="../index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i>
+    </a>
+
+    <!-- ШАПКА -->
+    <header class="product-header">
+        <h1 class="product-logo">AMIRIZE</h1>
+    </header>
+
+    <!-- ОСНОВНОЙ КОНТЕНТ -->
+    <main class="product-main">
+        <div class="product-container">
+            <!-- ЛЕВЫЙ БЛОК - КАРТИНКА -->
+            <div class="product-image-container">
+                <div class="product-image">
+                    <img src="../img/22.jpg" alt="Название картины">
+                </div>
+            </div>
+
+            <!-- ПРАВЫЙ БЛОК - ИНФОРМАЦИЯ -->
+            <div class="product-info">
+                <div class="product-title-row">
+                    <h1 class="product-title">Only You</h1>
+                    <button class="product-id-btn" onclick="copyToClipboard('002')">
+                        <span>Артикул: <strong>002</strong></span>
+                        <i class="fas fa-copy"></i>
+                    </button>
+                </div>
+                <div class="product-price">670₽</div>
+                
+                <p class="product-description">
+                    Неожиданный и трогательный сюрприз. Под изображением имя,
+                    а QR-код ведет на созданную галерею ваших общих фотографий.
+                    Это самый личный и современный подарок, который будет хранить ваши эмоции.
+                </p>
+                
+                <!-- ХАРАКТЕРИСТИКИ -->
+                <div class="product-specs">
+                    <h3 class="specs-title">Характеристики</h3>
+                    <ul class="specs-list">
+                        <li>
+                            <span class="spec-label">Размер:</span>
+                            <span>21x30 см</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Материал рамки:</span>
+                            <span>Дерево, МДФ, пластик</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Снаружи:</span>
+                            <span>Стекло</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Доступные цвета:</span>
+                            <span>Церный, Металлик, Белый, Дерево</span>
+                        </li>
+                        <li>
+                            <span class="spec-label">Стиль:</span>
+                            <span>Современный, минимализм</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                
+            </div>
+            
+        </div>
+        <!-- ВРЕМЯ ВЫПОЛНЕНИЯ -->
+            <div class="production-time">
+                <div class="time-title">⏱ Время выполнения заказа</div>
+                <div class="time-value">2-3 рабочих дня</div>
+            </div>
+            <div class="production-time">
+                <div class="time-title">Способ доставки</div>
+                <div class="time-value">Лично на руки, OZON доставка</div>
+            </div>
+    </main>
+
+    <!-- ФУТЕР -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p><span class="pip">AMIRIZE</span> © 2026 | Все права защищены</p>
+        </div>
+    </footer>
+
+    <script>
+        // Простой скрипт для кнопки "Назад"
+        document.querySelector('.back-btn').addEventListener('click', function(e) {
+            // Можно добавить анимацию перед переходом
+            this.style.transform = 'translateX(-10px)';
+            setTimeout(() => {
+                window.location.href = '../index.html';
+            }, 200);
+        });
+    </script>
+    <script>
+    // Функция копирования артикула в буфер обмена
+    function copyToClipboard(articleId) {
+        const text = `Артикул: ${articleId}`;
+        const btn = event.currentTarget;
+        
+        // Копируем в буфер обмена
+        navigator.clipboard.writeText(text)
+            .then(() => {
+                // Показываем подтверждение
+                const originalHTML = btn.innerHTML;
+                btn.innerHTML = '<span>Скопировано! <i class="fas fa-check"></i></span>';
+                btn.classList.add('copied');
+                
+                // Возвращаем обратно через 1.5 секунды
+                setTimeout(() => {
+                    btn.innerHTML = originalHTML;
+                    btn.classList.remove('copied');
+                }, 1500);
+            })
+            .catch(err => {
+                console.error('Ошибка копирования:', err);
+                alert('Не удалось скопировать артикул');
+            });
+    }
+    
+    // Альтернатива для старых браузеров
+    function fallbackCopyToClipboard(text) {
+        const textArea = document.createElement("textarea");
+        textArea.value = text;
+        document.body.appendChild(textArea);
+        textArea.select();
+        
+        try {
+            document.execCommand('copy');
+            return true;
+        } catch (err) {
+            return false;
+        } finally {
+            document.body.removeChild(textArea);
+        }
+    }
+</script>
+</body>
+</html>
