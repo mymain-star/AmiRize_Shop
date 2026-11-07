@@ -1,0 +1,451 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: #0e0e0e;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+
+/* ГЛАВНЫЙ ЭКРАН */
+
+.hero {
+    width: 100%;
+    height: 65vw;
+    min-height: 500px;
+    max-height: 700px;
+
+    background-image: url("img/main_fons.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    position: relative;
+}
+
+
+/* НАВИГАЦИЯ */
+
+.navigation {
+    width: 100%;
+    height: 55px;
+
+    padding: 0 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    color: #111;
+}
+
+.logo img {
+    width: 30px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.nav-links {
+    display: flex;
+    gap: 65px;
+}
+
+.nav-links a {
+    color: #111;
+    text-decoration: none;
+    font-size: 13px;
+
+    transition: opacity 0.3s ease;
+}
+
+.nav-links a:hover {
+    opacity: 0.5;
+}
+
+
+/* КНОПКА МЕНЮ */
+
+.menu-button {
+    border: none;
+    background: transparent;
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    cursor: pointer;
+}
+
+.menu-button span {
+    width: 26px;
+    height: 1px;
+    background: #111;
+}
+
+
+/* СЕКЦИЯ КАТЕГОРИЙ */
+
+.categories {
+    background: #0e0e0e;
+    padding: 0 4.4% 100px;
+
+    position: relative;
+}
+
+.section-heading span {
+    position: relative;
+    top: -25px;
+}
+
+/* ЗАГОЛОВОК СЕКЦИИ */
+
+.section-heading {
+    
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-left: 53%;
+    padding-right: 0;
+
+    font-family: monospace;
+    font-size: 20px;
+    color: #bcbcbc;
+
+    position: relative;
+}
+
+.section-heading::before {
+    content: "";
+
+    position: absolute;
+    width: 60%;
+    height: 72px;
+
+    right: -4.9%;
+    top: -72px;
+
+    background: #0e0e0e;
+
+    clip-path: polygon(13% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.section-name {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    white-space: nowrap;
+}
+
+.section-name .active {
+    color: #fff;
+}
+/* СЕТКА КАРТОЧЕК */
+
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 34px;
+
+    width: 100%;
+    max-width: 876px;
+
+    margin: 65px auto 0;
+}
+
+
+/* КАРТОЧКА */
+
+.category-card {
+    width: 100%;
+    aspect-ratio: 270 / 355;
+    height: auto;
+
+    position: relative;
+    display: block;
+    overflow: hidden;
+
+    border-radius: 15px;
+    text-decoration: none;
+    color: white;
+    background: #181818;
+
+    transition: transform 0.35s ease,
+                box-shadow 0.35s ease;
+}
+/* ФОТОГРАФИЯ */
+
+.category-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* АНИМАЦИЯ ПРИ НАВЕДЕНИИ */
+
+.category-card:hover {
+    transform: scale(1.025);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+}
+
+.category-card:hover img {
+    transform: scale(1.06);
+}
+
+.category-card:hover .arrow {
+    transform: translateX(7px);
+}
+
+
+/* АНИМАЦИЯ ПРИ НАЖАТИИ */
+
+.category-card:active {
+    transform: scale(0.98);
+    transition: transform 0.12s ease;
+}
+
+
+/* БОЛЬШАЯ КАРТОЧКА */
+
+.category-wide {
+    width: 100%;
+    max-width: 876px;
+
+    aspect-ratio: 876 / 251;
+    height: auto;
+
+    margin: 42px auto 0;
+}
+
+/* ПОДВАЛ */
+
+footer {
+    padding: 30px 4.4%;
+
+    display: flex;
+    justify-content: space-between;
+
+    color: #777;
+    font-size: 12px;
+}
+
+
+/* АДАПТИВНОСТЬ */
+
+/* =================================
+   АДАПТИВНОСТЬ
+================================= */
+
+/* Небольшие ноутбуки */
+@media (max-width: 1100px) {
+
+    .hero {
+        height: 65vw;
+        min-height: 420px;
+    }
+
+    .category-grid {
+        gap: 20px;
+        max-width: 760px;
+    }
+
+    .category-wide {
+        max-width: 760px;
+    }
+
+    .card-title {
+        font-size: 25px;
+        padding: 8px 10px;
+    }
+
+    .section-heading {
+        padding-left: 43%;
+        font-size: 17px;
+    }
+}
+
+
+/* Планшеты */
+@media (max-width: 768px) {
+
+    .hero {
+        height: 75vw;
+        min-height: 380px;
+    }
+
+    .navigation {
+        padding: 0 20px;
+    }
+
+    .nav-links {
+        gap: 25px;
+    }
+
+    .categories {
+        padding-left: 3%;
+        padding-right: 3%;
+    }
+
+    .section-heading {
+        padding-left: 35%;
+        font-size: 15px;
+    }
+
+    .category-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        max-width: 550px;
+        margin-top: 35px;
+    }
+
+    .category-wide {
+        max-width: 550px;
+        margin-top: 25px;
+    }
+
+    .card-title {
+        font-size: clamp(16px, 3vw, 23px);
+    }
+
+}
+
+
+/* Телефоны */
+@media (max-width: 600px) {
+
+    .hero {
+        height: 85vw;
+        min-height: 340px;
+        max-height: 500px;
+    }
+
+    .navigation {
+        padding: 0 15px;
+    }
+
+    .logo img {
+        width: 25px;
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    .nav-links a {
+        font-size: 11px;
+    }
+
+    .menu-button span {
+        width: 22px;
+    }
+
+    .section-heading {
+        padding-left: 0;
+        font-size: 12px;
+        min-height: 55px;
+    }
+
+    .section-heading::before {
+        width: 55%;
+        right: -3.2%;
+        height: 60px;
+        top: -60px;
+    }
+
+    .section-name,
+    .section-heading > span {
+        top: -15px;
+    }
+
+    .category-grid {
+        gap: 12px;
+        margin-top: 25px;
+    }
+
+    .category-card {
+        border-radius: 10px;
+    }
+
+    .card-title {
+        font-size: clamp(12px, 3.5vw, 18px);
+        padding: 7px;
+        bottom: 15%;
+    }
+
+    .category-wide {
+        margin-top: 18px;
+    }
+
+    .category-wide .card-title {
+        padding-left: 30%;
+        font-size: clamp(14px, 4vw, 20px);
+    }
+
+    footer {
+        padding: 20px 15px;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+}
+
+
+/* Маленькие телефоны */
+@media (max-width: 380px) {
+
+    .navigation {
+        padding: 0 10px;
+    }
+
+    .nav-links {
+        gap: 8px;
+    }
+
+    .nav-links a {
+        font-size: 10px;
+    }
+
+    .logo img {
+        width: 22px;
+    }
+
+    .menu-button span {
+        width: 19px;
+    }
+
+    .categories {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .category-grid {
+        gap: 9px;
+    }
+
+    .card-title {
+        font-size: 11px;
+        padding: 5px;
+    }
+
+    .category-wide .card-title {
+        padding-left: 25%;
+    }
+
+}

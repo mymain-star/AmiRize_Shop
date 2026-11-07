@@ -200,17 +200,17 @@ export const productsData = {
       price: 165,
       article: "j05",
       image: "img/j05.jpg",
-      description: "Пара маленьких сердец, которые растопят вашу душу",
+      description: "Незаменимый акссесуар на вечер",
       category: "jewelry",
       link: "EARRING/EA05.html?product=105"
     },
     {
       id: 106,
-      name: "Серьги Crystal ",
+      name: "Колье Crystal ",
       price: 165,
       article: "j06",
       image: "img/j06.jpg",
-      description: "Пара маленьких сердец, которые растопят вашу душу",
+      description: "Элегантное дополнение к вечернему платью",
       category: "jewelry",
       link: "EARRING/EA06.html?product=106"
     }
@@ -280,7 +280,7 @@ export const productsData = {
     image: "img/bou3.png",
     description: "Классика из алых роз в стильной упаковке",
     category: "bouquets",
-    link: "BOUQET/BOU3.html"
+    link: "BOUQET/BOU3.html?product=403"
   },
 ],
     // MINI GIFTS COLLECTION
@@ -344,7 +344,7 @@ export const collectionsConfig = {
     title: "BOUQUET COLLECTION",
     triggerId: "bouquetsTrigger",
     dropdownId: "bouquetsDropdown",
-    image: "img/bouqet_collection.png" // Убедись, что такая картинка есть
+    image: "img/bouqet_collection.png"
   },
   mini_gifts: {
     title: "MINI GIFTS",

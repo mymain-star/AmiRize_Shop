@@ -3,63 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AMIRIZE - Подарки, которые хочется дарить</title>
-    <link rel="stylesheet" href="picturies.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>AmiRize — Подарки</title>
+    <link rel="icon" type="image/svg+xml" href="img/Group 7.svg">
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <!-- Бургер-меню -->
-    <div class="burger-menu">
-        <div class="burger-icon" id="burgerIcon">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        
-        <div class="menu-overlay" id="menuOverlay">
-            <div class="menu-content">
-                <div class="menu-header">
-                    <h2>Категории</h2>
-                    <div class="close-btn" id="closeBtn">&times;</div>
-                </div>
-                <ul class="menu-list">
-                    <li><a href="index.html" class="menu-link"><i class="fas fa-palette"></i> Картины</a></li>
-                    <li><a href="boxes.html" class="menu-link"><i class="fas fa-box-open"></i> Боксы</a></li>
-                    <li><a href="bouquets.html" class="menu-link"><i class="fas fa-spa"></i> Букеты</a></li>
-                    <li><a href="jewelry.html" class="menu-link"><i class="fas fa-gem"></i> Бижутерия</a></li>
-                    <li><a href="mini_gifts.html" class="menu-link"><i class="fas fa-gift"></i> Мини-Подарки</a></li>
-                    <li><a href="pip.html" class="menu-link"><i class="fas fa-percent"></i> Акции</a></li>
-                    <li><a href="contact.html" class="menu-link"><i class="fas fa-question-circle"></i> Связь</a></li>
-                </ul>
-                <div class="menu-footer">
-                    <p><b>AMIRIZE</b> shop © 2025</p>
-                </div>
+    <header class="hero">
+        <nav class="navigation">
+            <a href="index.html" class="logo">
+                    <img src="img/AR(1).png" alt="AmiRize">
+                </a>
+            <div class="nav-links">
+                <a href="index.html">Главная</a>
+                <a href="#categories">Каталог</a>
+                <a href="contact.html">Связь</a>
             </div>
-        </div>
-    </div>
-
-    <!-- Основной контейнер -->
-    <div class="main-container">
-        <!-- Шапка -->
-        <header class="header">
-            <h1 class="logo">AMIRIZE</h1>
-            <p class="tagline">Подарки, которые хочется дарить...</p>
-        </header>
-
-        <!-- Главный контент -->
-        <main class="main-content" id="mainContent">
-            <!-- Коллекции будут сгенерированы динамически -->
-        </main>
-
-        <!-- Подвал -->
-        <footer class="footer">
-            <div class="footer-content">
-                <p> <span class="pip">AMIRIZE</span>  © 2026 | Все права защищены</p>
+            <button class="menu-button" aria-label="Открыть меню">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </nav>
+    </header>
+    <main class="categories" id="categories">
+        <div class="section-heading">
+            <div class="section-name">
+                <span>MAIN/</span>
+                <span class="active">CATEGORIES</span>
             </div>
-        </footer>
-    </div>
 
-    <!-- Подключаем данные о товарах -->
-    <script type="module" src="js/22script.js"></script>
+            <span>11/11/2026</span>
+        </div>
+        <div class="category-grid">
+            <a href="bouquets.html" class="category-card">
+                <img src="img/BOUcets.png" alt="Букеты">
+                <div class="card-title">
+                    <span>BOUQUETS</span>
+                    <span class="arrow">→</span>
+                </div>
+            </a>
+            <a href="jewelry.html" class="category-card">
+                <img src="img/JEWELre.png" alt="Украшения">
+                <div class="card-title">
+                    <span>JEWELRY</span>
+                    <span class="arrow">→</span>
+                </div>
+            </a>
+            <a href="boxes.html" class="category-card">
+                <img src="img/BOXes.png" alt="Подарочные коробки">
+                <div class="card-title">
+                    <span>BOXES</span>
+                    <span class="arrow">→</span>
+                </div>
+            </a>
+        </div>
+        <a href="index.html" class="category-card category-wide">
+            <img src="img/PICtures.png" alt="Фотографии">
+            <div class="card-title">
+                <span>PICTURES</span>
+                <span class="arrow">⟶</span>
+            </div>
+        </a>
+    </main>
+    <footer id="contact">
+        <span>AMIRIZE © 2026</span>
+        <span>Подарки, которые хочется дарить</span>
+    </footer>
 </body>
 </html>
